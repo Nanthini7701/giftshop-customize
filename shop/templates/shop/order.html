@@ -1,0 +1,89 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="order-wrapper">
+
+    <div class="order-content">
+
+        <!-- LEFT SIDE — PRODUCT -->
+        <div class="order-product-box">
+
+            <div class="product-row">
+
+                <!-- PRODUCT IMAGE -->
+                <img class="order-product-img" src="{% static 'shop/images/pinkgirlframe.png' %}" alt="Product">
+
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.title }}</h3>
+
+                    <div class="quantity-box">
+                        <button class="qty-btn">−</button>
+                        <span class="qty-count">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+
+                    <p class="price">₹{{ product.price }}</p>
+                </div>
+
+            </div>
+
+            <!-- Coupon -->
+            <div class="coupon-section">
+                <input type="text" placeholder="Enter coupon code" class="coupon-input">
+                <button class="apply-btn">Apply coupon</button>
+            </div>
+
+            <button class="clear-cart">Clear Shopping cart</button>
+        </div>
+
+        <!-- RIGHT SIDE — ORDER SUMMARY -->
+        <div class="summary-box">
+
+            <h3>Order Summary</h3>
+
+            <div class="summary-row">
+                <span>Items</span>
+                <span>1</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>₹1200</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>₹0.0</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Taxes</span>
+                <span>₹0.0</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Coupon Discount</span>
+                <span>₹200</span>
+            </div>
+
+            <hr>
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>₹1000</span>
+            </div>
+
+            <!-- ✔ THIS BUTTON REDIRECTS TO BILLING PAGE -->
+            <a href="{% url 'shop:billing' %}">
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

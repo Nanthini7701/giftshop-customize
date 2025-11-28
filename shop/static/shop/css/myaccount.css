@@ -1,0 +1,71 @@
+.account-wrapper {
+    width: 90%;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.account-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.account-container {
+    display: flex;
+    gap: 40px;
+}
+
+.account-menu {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-btn {
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    background: #FFD42A;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.menu-btn.active {
+    background: black;
+    color: white;
+}
+
+.account-form {
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group input {
+    margin-top: 5px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.update-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #FFD42A;
+    border: none;
+    border-radius: 8px;
+}
+

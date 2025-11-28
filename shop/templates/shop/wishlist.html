@@ -1,0 +1,119 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="page-main container">
+  <h2 class="page-title">My Wishlist</h2>
+
+  <section class="wishlist-table">
+    <div class="table-head">
+      <div class="th col-thumb">Product</div>
+      <div class="th col-name">Names</div>
+      <div class="th col-price">Price</div>
+      <div class="th col-date">Date Added</div>
+      <div class="th col-stock">Stock Status</div>
+      <div class="th col-action">Action</div>
+    </div>
+
+    <!-- single wishlist row -->
+    <div class="table-row">
+      <div class="col-thumb">
+        <img src="{% static 'shop/images/pinkgirlframe.png' %}" alt="The Picture Frame set">
+      </div>
+
+      <div class="col-name">
+        <div class="prod-title">The Picture Frame set</div>
+        <div class="prod-sub">Personalized photo frame</div>
+      </div>
+
+      <div class="col-price">₹<span class="price">1000</span></div>
+      <div class="col-date">22 August 2025</div>
+      <div class="col-stock in-stock">InStock</div>
+
+      <div class="col-action">
+        <a href="#" class="btn-pill small yellow">Add to Cart</a>
+      </div>
+    </div>
+
+    <!-- example: wishlist link row / controls -->
+    <div class="wishlist-controls">
+      <div class="link-box">
+        <label>Wishlist link</label>
+        <input readonly value="http://example.com" class="share-link">
+        <button class="btn-pill small yellow" onclick="navigator.clipboard?.writeText('http://example.com')">Copy link</button>
+      </div>
+
+      <div class="right-controls">
+        <a href="#" class="clear-wishlist">Clear Wishlist</a>
+        <a href="#" class="btn-pill small yellow">Add to Cart</a>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<!-- inline CSS to avoid editing base files (move to static css if preferred) -->
+<style>
+/* container spacing */
+.page-main.container { padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
+
+/* title */
+.page-title { text-align:center; margin-bottom:28px; font-weight:600; }
+
+/* table head */
+.wishlist-table { background: transparent; }
+.table-head, .table-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 110px 140px 120px 140px;
+  gap: 16px;
+  align-items: center;
+}
+.table-head {
+  background: #f1c81f; /* yellow header */
+  color: #111;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+.table-head .th { font-size:15px; }
+
+/* rows */
+.table-row {
+  border: 1px solid #ddd;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  border-radius: 4px;
+  background:#fff;
+}
+.col-thumb img { width:84px; height:84px; object-fit:cover; border-radius:6px; display:block; }
+
+/* product info */
+.prod-title { font-weight:600; margin-bottom:6px; }
+.prod-sub { color:#777; font-size:13px; }
+
+/* price, stock */
+.col-price { color: #2faa5b; font-weight:700; }
+.in-stock { color:#2faa5b; }
+
+/* buttons */
+.btn-pill { display:inline-block; padding:10px 18px; border-radius:20px; text-decoration:none; border:1px solid transparent; }
+.btn-pill.small { padding:8px 14px; border-radius:16px; font-size:14px; }
+.btn-pill.yellow { background:#f1c81f; color:#111; border-color:#d4aa08; }
+
+/* wishlist controls */
+.wishlist-controls { display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:12px; flex-wrap:wrap; }
+.link-box { display:flex; align-items:center; gap:10px; }
+.share-link { padding:10px 12px; border-radius:20px; border:1px solid #ddd; min-width:300px; }
+
+/* responsive adjustments */
+@media (max-width:900px){
+  .table-head, .table-row {
+    grid-template-columns: 80px 1fr;
+    grid-auto-rows: auto;
+  }
+  .col-price, .col-date, .col-stock, .col-action { display:none; }
+  .table-head { display:none; } /* hide header on small screens and rely on stacked rows */
+}
+</style>
+{% endblock %}

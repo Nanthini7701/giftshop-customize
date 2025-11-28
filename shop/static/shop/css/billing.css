@@ -1,0 +1,114 @@
+.billing-wrapper {
+    width: 90%;
+    margin: 40px auto;
+    font-family: "Poppins", sans-serif;
+}
+
+.billing-content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* LEFT SIDE */
+.billing-box {
+    width: 60%;
+    background: #f3c700;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.billing-title {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.two-col {
+    display: flex;
+    gap: 20px;
+}
+
+.field {
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.field label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.field input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* Delivery options */
+.delivery-title {
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.delivery-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border: 1px solid #111;
+    border-radius: 50px;
+    background: #fff;
+}
+
+/* RIGHT SIDE SUMMARY */
+.summary-box {
+    width: 32%;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-row.total span:last-child {
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 12px;
+    background: #f8c000;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* IMAGE UNDER ORDER SUMMARY */
+.billing-product-img {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .billing-box, .summary-box { width: 100%; }
+    .two-col { flex-direction: column; }
+}

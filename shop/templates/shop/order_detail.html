@@ -1,0 +1,84 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'shop/css/order_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="order-page">
+  <div class="container">
+
+    <!-- Yellow order summary bar -->
+    <section class="order-summary-bar">
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="label">Order ID</div>
+          <div class="value">#SJKD456FH</div>
+        </div>
+
+        <div class="summary-item">
+          <div class="label">Payment Method</div>
+          <div class="value">G-PAY</div>
+        </div>
+
+        <div class="summary-item">
+          <div class="label">Transaction Id</div>
+          <div class="value">TF59DHJK</div>
+        </div>
+
+        <div class="summary-item">
+          <div class="label">Estimate Delivery Date</div>
+          <div class="value">28 June 2025</div>
+        </div>
+
+        <div class="summary-action">
+          <a href="{% url 'shop:download_invoice' order.id %}" class="btn-pill white">Download Invoice</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product row -->
+    <section class="order-product">
+      <div class="product-card">
+        <div class="product-thumb">
+          <img src="{% static 'shop/images/product-frame.jpg' %}" alt="The Picture Frame set">
+        </div>
+        <div class="product-body">
+          <div class="product-title">The Picture Frame set</div>
+          <div class="product-meta">22 August 2025</div>
+        </div>
+        <div class="product-price">₹1000</div>
+      </div>
+    </section>
+
+    <!-- Price breakdown -->
+    <section class="price-breakdown">
+      <div class="charge-row">
+        <div class="charge-label">Shipping</div>
+        <div class="charge-value">Rs.00.0</div>
+      </div>
+
+      <div class="charge-row">
+        <div class="charge-label">Taxes</div>
+        <div class="charge-value">Rs.00.0</div>
+      </div>
+
+      <div class="charge-row">
+        <div class="charge-label">Coupon Discount</div>
+        <div class="charge-value">Rs.150</div>
+      </div>
+
+      <div class="total-row">
+        <div class="total-label">Total</div>
+        <div class="total-value">₹850</div>
+      </div>
+
+      <div class="track-action">
+        <a href="{% url 'shop:track_order' order.id %}" class="btn-pill small">Track Order</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+{% endblock %}

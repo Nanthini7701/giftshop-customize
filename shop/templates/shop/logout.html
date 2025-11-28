@@ -1,0 +1,49 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'shop/css/logout.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="account-page">
+  <div class="container account-inner">
+    <div class="account-row">
+      <!-- LEFT: sidebar (same as previous) -->
+      <aside class="account-sidebar">
+        <div class="logo-wrap">
+          <img src="{% static 'shop/images/logo-circle.png' %}" alt="logo" class="logo-circle">
+        </div>
+
+        <nav class="account-menu">
+          <!-- Personal Information (active button) -->
+            <a href="{% url 'shop:myaccount' %}" class="menu-btn">Personal Information</a>
+
+            <!-- My Order -->
+            <a href="{% url 'shop:ordertraking' %}" class="menu-btn yellow-btn">My Order</a>
+
+            <!-- Password Manager -->
+            <a href="{% url 'shop:password' %}" class="menu-btn yellow-btn">Password Manager</a>
+
+            <!-- Logout -->
+            <a href="{% url 'shop:logout' %}" class="menu-btn yellow-btn  active">Logout</a>
+        </nav>
+      </aside>
+
+      <!-- RIGHT: main content -->
+      <main class="account-main">
+        <h2 class="section-title">Log Out</h2>
+
+        <div class="logout-card">
+          <p class="logout-prompt">Are you sure, you want to log out?</p>
+
+          <form method="post" action="{% url 'shop:home' %}">
+            {% csrf_token %}
+            <button class="btn-yellow large" type="submit">Yes, Logout</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+{% endblock %}

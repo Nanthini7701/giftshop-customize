@@ -1,0 +1,100 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+<main class="track-page">
+  <div class="container">
+
+    <h2 class="page-title">Track Your Order</h2>
+
+    <div class="order-id-row">
+      <div class="label">order status</div>
+      <div class="order-id">Order Id: <strong>{{ order.order_number|default:"#SJKD456FH" }}</strong></div>
+    </div>
+
+    <!-- Progress bar -->
+    <section class="progress-wrap">
+      <div class="progress-inner">
+        <div class="progress-steps">
+          <!-- step: Order Placed -->
+          <div class="step {% if order.status_index|default:0 >= 0 %}done{% endif %}">
+            <div class="step-title">Order Placed</div>
+            <div class="step-time">
+              <div class="time">{{ order.placed_date|date:"d F Y"|default:"28 June 2025" }}</div>
+              <div class="time-sub">{{ order.placed_time|default:"11 AM" }}</div>
+            </div>
+          </div>
+
+          <!-- step: Accepted -->
+          <div class="step {% if order.status_index|default:0 >= 1 %}done{% endif %}">
+            <div class="step-title">Accepted</div>
+            <div class="step-time">
+              <div class="time">{{ order.accepted_date|date:"d F Y"|default:"28 June 2025" }}</div>
+              <div class="time-sub">{{ order.accepted_time|default:"11:15 AM" }}</div>
+            </div>
+          </div>
+
+          <!-- step: In Progress -->
+          <div class="step {% if order.status_index|default:0 >= 2 %}done{% endif %}">
+            <div class="step-title">In Progress</div>
+            <div class="step-time">
+              <div class="time">Expected</div>
+              <div class="time-sub">{{ order.inprogress_date|date:"d F Y"|default:"28 June 2025" }}</div>
+            </div>
+          </div>
+
+          <!-- step: On The Way -->
+          <div class="step {% if order.status_index|default:0 >= 3 %}done{% endif %}">
+            <div class="step-title">On The Way</div>
+            <div class="step-time">
+              <div class="time">Expected</div>
+              <div class="time-sub">{{ order.ontheway_date|date:"d F Y"|default:"28 June 2025" }}</div>
+            </div>
+          </div>
+
+          <!-- step: Delivered -->
+          <div class="step {% if order.status_index|default:0 >= 4 %}done{% endif %}">
+            <div class="step-title">Delivered</div>
+            <div class="step-time">
+              <div class="time">Expected</div>
+              <div class="time-sub">{{ order.delivered_date|date:"d F Y"|default:"28 June 2025" }}</div>
+            </div>
+          </div>
+        </div> <!-- .progress-steps -->
+      </div> <!-- .progress-inner -->
+    </section>
+
+    <!-- Product list (single row like screenshot) -->
+    <section class="product-list">
+      {% for item in order_items %}
+      <article class="product-row">
+        <div class="thumb">
+  <img src="{% static 'shop/images/pinkgirlframe.png' %}"
+       alt="{{ item.product.title|default:'The Picture Frame set' }}">
+</div>
+        <div class="prod-info">
+          <div class="prod-title">{{ item.product.title|default:"The Picture Frame set" }}</div>
+          <div class="prod-meta">{{ item.estimate_date|date:"d F Y"|default:"22 August 2025" }}</div>
+        </div>
+        <div class="prod-price">₹{{ item.price|default:"1000" }}</div>
+      </article>
+      {% empty %}
+      <!-- static fallback single card -->
+      <article class="product-row">
+        <div class="thumb">
+          <img src="{% static 'shop/images/product-frame.jpg' %}" alt="The Picture Frame set">
+        </div>
+        <div class="prod-info">
+          <div class="prod-title">The Picture Frame set</div>
+          <div class="prod-meta">22 August 2025</div>
+        </div>
+        <div class="prod-price">₹1000</div>
+      </article>
+      {% endfor %}
+    </section>
+
+  </div> <!-- .container -->
+</main>
+{% endblock %}

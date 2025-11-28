@@ -1,0 +1,135 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="payment-wrapper">
+
+    <!-- TITLE -->
+    <h2 class="payment-title">Payment Selection</h2>
+
+    <!-- PRODUCT BOX -->
+    <div class="payment-product-box">
+
+        <img src="{% static 'shop/images/pinkgirlframe.png' %}" class="pay-img">
+
+        <div class="pay-product-info">
+            <h3 class="pay-name">The Picture Frame set</h3>
+            <p class="pay-date">22 August 2025</p>
+        </div>
+
+        <p class="pay-price">₹1000</p>
+
+    </div>
+
+    <div class="pay-bottom">
+
+        <!-- LEFT — ORDER SUMMARY -->
+        <div class="summary-box">
+            <h3>Order Summary</h3>
+
+            <div class="summary-row"><span>Items</span><span>1</span></div>
+            <div class="summary-row"><span>Subtotal</span><span>₹1200</span></div>
+            <div class="summary-row"><span>Shipping</span><span>₹0.0</span></div>
+            <div class="summary-row"><span>Taxes</span><span>₹0.0</span></div>
+            <div class="summary-row"><span>Coupon Discount</span><span>₹200</span></div>
+
+            <hr>
+
+            <div class="summary-row total"><span>Total</span><span>₹1000</span></div>
+        </div>
+
+        <!-- PAYMENT OPTIONS -->
+        <div class="payment-methods">
+
+            <div class="method">
+                <input type="radio" name="paymethod" onclick="showForm('gpay')">
+                <img src="{% static 'shop/images/gpay.png' %}" class="method-icon">
+            </div>
+
+            <div class="method">
+                <input type="radio" name="paymethod" onclick="showForm('phonepe')">
+                <img src="{% static 'shop/images/phonepe.png' %}" class="method-icon">
+            </div>
+
+            <div class="method">
+                <input type="radio" name="paymethod" onclick="showForm('paytm')">
+                <img src="{% static 'shop/images/paytm.png' %}" class="method-icon">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LEFT PRODUCT IMAGE -->
+    <img src="{% static 'shop/images/pinkgirlframe.png' %}" class="payment-large-img">
+
+    <!-- PAYMENT FORMS -->
+    <div class="payment-form">
+
+        <!-- GPay FORM -->
+        <div id="gpay" class="pay-form-section hidden">
+            <label>Name :</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>Enter UPI ID</label>
+            <input type="text" placeholder="example@okicici">
+
+            <button class="proceed-btn" onclick="showSuccess()">Proceed</button>
+        </div>
+
+        <!-- PhonePe FORM -->
+        <div id="phonepe" class="pay-form-section hidden">
+            <label>Name :</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>PhonePe UPI ID</label>
+            <input type="text" placeholder="example@ybl">
+
+            <button class="proceed-btn" onclick="showSuccess()">Proceed</button>
+        </div>
+
+        <!-- Paytm FORM -->
+        <div id="paytm" class="pay-form-section hidden">
+            <label>Name :</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>Paytm UPI ID</label>
+            <input type="text" placeholder="example@paytm">
+
+            <button class="proceed-btn" onclick="showSuccess()">Proceed</button>
+        </div>
+
+        <!-- SUCCESS BOX -->
+        <div id="success-box" class="success-section hidden">
+            <div class="success-bg">
+                <div class="success-check"></div>
+                <h3 class="success-text">Payment Successfully done</h3>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SCRIPT FOR SWITCHING PAYMENT FORM + SUCCESS BOX -->
+<script>
+function showForm(method) {
+    document.getElementById("gpay").classList.add("hidden");
+    document.getElementById("phonepe").classList.add("hidden");
+    document.getElementById("paytm").classList.add("hidden");
+    document.getElementById("success-box").classList.add("hidden");
+
+    document.getElementById(method).classList.remove("hidden");
+}
+
+function showSuccess() {
+    document.getElementById("gpay").classList.add("hidden");
+    document.getElementById("phonepe").classList.add("hidden");
+    document.getElementById("paytm").classList.add("hidden");
+
+    document.getElementById("success-box").classList.remove("hidden");
+}
+</script>
+
+{% endblock %}

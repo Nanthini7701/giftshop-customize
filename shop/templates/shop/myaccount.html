@@ -1,0 +1,67 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="account-wrapper">
+
+    <h2 class="account-title">My Account</h2>
+
+    <div class="account-container">
+
+        <!-- LEFT SIDE MENU -->
+        <div class="account-menu">
+
+            <!-- Personal Information (active button) -->
+            <a href="#" class="menu-btn active">Personal Information</a>
+
+            <!-- My Order -->
+            <a href="{% url 'shop:ordertraking' %}" class="menu-btn yellow-btn">My Order</a>
+
+            <!-- Password Manager -->
+            <a href="{% url 'shop:password' %}" class="menu-btn yellow-btn">Password Manager</a>
+
+            <!-- Logout -->
+            <a href="{% url 'shop:logout' %}" class="menu-btn yellow-btn">Logout</a>
+
+        </div>
+
+        <!-- RIGHT SIDE FORM -->
+        <div class="account-form">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="John">
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Doe">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" placeholder="example@gmail.com">
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" placeholder="+91 9876543210">
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <input type="text" placeholder="Male / Female">
+            </div>
+
+            <button class="update-btn">Update Change</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

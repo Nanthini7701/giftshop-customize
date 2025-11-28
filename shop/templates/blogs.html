@@ -1,0 +1,46 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="blog-main">
+
+    <!-- Title -->
+    <h2 class="blog-heading">Gifting Inspiration Blog</h2>
+
+    <!-- Top Banner Images Row -->
+    <div class="blog-banner">
+        <img src="{% static 'shop/images/handwithredlabel.png' %}" alt="">
+        <img src="{% static 'shop/images/surprice.png' %}" alt="">
+        <img src="{% static 'shop/images/coupleredbox.png' %}" alt="">
+        <img src="{% static 'shop/images/surprisefam.png' %}" alt="">
+    </div>
+
+    <!-- Blog Intro Block -->
+    <div class="blog-intro">
+
+        <div class="blog-intro-left">
+            <h3>Ultimate Holiday Gift Guide 2025: 50+ Ideas for Everyone</h3>
+            <p>
+                The holiday season is here, and finding the perfect gift can feel overwhelming.
+                Whether you're shopping for family, friends, or colleagues, our comprehensive
+                guide has something special for everyone on your list.
+            </p>
+            <p class="blog-small">Holiday Gifts. Gift Guide</p>
+
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <div class="blog-intro-right"></div>
+    </div>
+
+    <!-- Gift Images Grid -->
+    <div class="blog-gift-grid">
+        <img src="{% static 'shop\images\heartinfinity.png' %}" alt="">
+        <img src="{% static 'shop\images\glassphoto.png' %}" alt="">
+        <img src="{% static 'shop\images\money.png' %}" alt="">
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- MAIN SECTION START -->
+<section class="contact-main">
+
+    <!-- Heading -->
+    <h2 class="contact-title">Contact us</h2>
+
+    <!-- Yellow Box With Image + Text -->
+    <div class="contact-banner">
+        <div class="contact-img-box">
+            <img src="{% static 'shop/images/couple tele.png' %}" alt="">
+        </div>
+
+        <div class="contact-text-box">
+            <p>
+                We’re here to help you with your gifting needs, questions, or special requests.
+            </p>
+        </div>
+    </div>
+
+    <!-- Description Paragraph -->
+    <p class="contact-desc">
+        We’re here to help you with your gifting needs, questions, or special requests. Whether you're
+        tracking an order, need help choosing the perfect gift, or want something custom-made — we’d
+        love to hear from you!
+    </p>
+
+    <!-- Contact Details -->
+    <div class="contact-info-section">
+
+        <div class="contact-block">
+            <h4>📞 Call Us</h4>
+            <p>General Inquiries: +1 (800) 555-CATZ</p>
+            <p>Adoption Support: +1 (800) 555-PAWS</p>
+        </div>
+
+        <div class="contact-block">
+            <h4>✉️ Email Us</h4>
+            <p>General: info@Vibeygifty.com</p>
+        </div>
+
+       <div class="contact-block connect-block">
+    <h4>Connect with us</h4>
+
+    <div class="social-icons">
+        <a href="#">
+            <img src="{% static 'shop/images/fb.png' %}" alt="Facebook" class="social-icon-img">
+        </a>
+
+        <a href="#">
+            <img src="{% static 'shop/images/insta.jpeg' %}" alt="Instagram" class="social-icon-img">
+        </a>
+
+        <a href="#">
+            <img src="{% static 'shop/images/twit.png' %}" alt="Twitter" class="social-icon-img">
+        </a>
+
+        <a href="#">
+            <img src="{% static 'shop/images/yb.png' %}" alt="YouTube" class="social-icon-img">
+        </a>
+    </div>
+</div>
+
+    </div>
+
+</section>
+<!-- MAIN SECTION END -->
+{% endblock %}

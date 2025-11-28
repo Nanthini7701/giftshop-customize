@@ -1,0 +1,344 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- HERO: two-column layout -->
+<!-- HERO SECTION WITH BACKGROUND -->
+<section
+  class="hero hero-bg blink"
+  style="background-image: url('{% static 'shop/images/hero-bg.jpeg' %}');"
+>
+  <div class="container hero-flex">
+
+    <!-- LEFT IMAGE ON TOP OF BACKGROUND -->
+    <div class="hero-left">
+      <img
+        src="{% static 'shop/images/homehero.png' %}"
+        alt="Decorative Left"
+        class="hero-left-img"
+      />
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="hero-right">
+      <h1 class="hero-title">Wrapped with Love</h1>
+      <p class="hero-sub">
+        Every gift tells a story — add your personal touch with thoughtful
+        wrapping and heartfelt notes.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button" href="#">Explore now</a>
+        <a class="button outline" href="{% url 'shop:enquiry' %}">Enquiry</a>
+      </div>
+    </div>
+
+  </div>
+
+
+        <!-- group image anchored bottom-right inside the right column -->
+        <img
+          class="hero-group"
+          src="{% static 'shop/images/Group 30710.png' %}"
+          alt="Group"
+        />
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-choose container">
+  <h2 class="section-title">Why Choose Us</h2>
+  <div class="features-row">
+    <div class="feature">
+      <img src="{% static 'shop\images\homegifts.png' %}" alt="Curated" />
+      <div class="feature-label">Curated Gift Collections</div>
+    </div>
+    <div class="feature">
+      <img src="{% static 'shop\images\lightframe.png' %}" alt="Personalize" />
+      <div class="feature-label">Personalization options</div>
+    </div>
+    <div class="feature">
+      <img src="{% static 'shop\images\delivery.png' %}" alt="Delivery" />
+      <div class="feature-label">Fast & Reliable Delivery</div>
+    </div>
+    <div class="feature">
+      <img src="{% static 'shop\images\qr.png' %}" alt="Payments" />
+      <div class="feature-label">Easy & Secure Payments</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED COLLECTIONS -->
+<section class="featured container">
+  <h2 class="section-title">Featured collections</h2>
+
+  <div class="featured-grid">
+    <!-- example card 1 -->
+    <div class="card featured-card">
+      <div class="card-media">
+        <img src="{% static 'shop\images\pinkgirlframe.png' %}" alt="The Picture Frame set" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">The Picture Frame set</h3>
+        <p class="card-price">Rs: 1000 Per Package</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#">Shop now</a>
+          <button class="btn btn-outline customize-btn" data-collection="The Picture Frame set" data-image="{% static 'shop/images/sample-collection-1.jpg' %}">Customize</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- card 2 -->
+    <div class="card featured-card">
+      <div class="card-media">
+        <img src="{% static 'shop\images\whiebigcup.png' %}" alt="The Mug set" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">The Mug set</h3>
+        <p class="card-price">Rs: 1000 Per Package</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#">Shop now</a>
+          <button class="btn btn-outline customize-btn" data-collection="The Mug set" data-image="{% static 'shop/images/sample-collection-2.jpg' %}">Customize</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- card 3 -->
+    <div class="card featured-card">
+      <div class="card-media">
+        <img src="{% static 'shop\images\pinkflask.png' %}" alt="The Frame set" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">The Flower set</h3>
+        <p class="card-price">Rs: 800 Per Package</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#">Shop now</a>
+          <button class="btn btn-outline customize-btn" data-collection="The Picture Frame set" data-image="{% static 'shop/images/sample-collection-3.jpg' %}">Customize</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card featured-card">
+      <div class="card-media">
+        <img src="{% static 'shop\images\famityframe.png' %}" alt="The Frame set" />
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">The Picture Family Frame set</h3>
+        <p class="card-price">Rs: 1200 Per Package</p>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#">Shop now</a>
+          <button class="btn btn-outline customize-btn" data-collection="The Picture Frame set" data-image="{% static 'shop/images/sample-collection-3.jpg' %}">Customize</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- add more cards as needed -->
+  </div>
+</section>
+
+<!-- CUSTOMIZE MODAL (hidden by default) -->
+<div id="customizeModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-panel">
+    <button class="modal-close" id="modalCloseBtn" title="Close">&times;</button>
+
+    <div class="modal-grid">
+      <div class="modal-form-col">
+        <h3 id="modalTitle">Gift Customization Details Form</h3>
+        <form id="customizeForm">
+          <div class="form-row">
+            <label>Recipient's Name</label>
+            <input type="text" name="recipient" placeholder="Recipient's name" required/>
+          </div>
+
+          <div class="form-row">
+            <label>Color choice</label>
+            <select name="color">
+              <option>Golden Theme</option>
+              <option>Red Theme</option>
+              <option>Blue Theme</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Date</label>
+            <input type="date" name="date" />
+          </div>
+
+          <div class="form-row">
+            <label>Font style</label>
+            <input type="text" name="font" placeholder="Font style (e.g. Italic)" />
+          </div>
+
+          <div class="form-row">
+            <label>Custom Message</label>
+            <textarea name="message" rows="3" placeholder="Enter custom message..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <label>Include gift wrap?</label>
+            <label><input type="radio" name="wrap" value="yes" checked/> Yes</label>
+            <label><input type="radio" name="wrap" value="no" /> No</label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-preview-col">
+        <div class="preview-box">
+          <div class="preview-image-wrap">
+            <!-- preview image will be filled by JS from button data-image -->
+            <img id="previewImage" src="" alt="Preview" />
+          </div>
+          <div class="preview-caption" id="previewCaption">Preview</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY (full-screen) -->
+<div id="successOverlay" class="success-overlay" aria-hidden="true">
+  <div class="success-card" id="successCard">
+    <h2>Customization details updated Success</h2>
+    <p>Check your Dashboard</p>
+    <button id="successClose" class="btn btn-outline">Close</button>
+  </div>
+</div>
+
+<!-- Special Offer & Discounts -->
+<section class="special-offer-section">
+    <div class="offer-text">
+        <h2>Special offer & discounts</h2>
+
+        <h1 class="big-offer-title">
+            SEASON <span class="yellow">COLLECTIONS</span> GET <span class="red">30%</span>
+        </h1>
+
+        <p class="offer-subtitle">
+            "Unwrap the Joy – Special Offers Just for You!"
+        </p>
+
+        <p class="offer-desc">
+            Celebrate every moment with thoughtful gifts at irresistible prices.
+            Discover handpicked treasures for every occasion – now on limited-time discount!
+        </p>
+    </div>
+
+    <div class="offer-img">
+        <img src="{% static 'shop\images\special offer.png' %}" alt="special offer">
+    </div>
+</section>
+<section class="faq-section">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    {% for q, a in faq_list %}
+    <div class="faq-card">
+        <details>
+            <summary>{{ q }}</summary>
+            <div class="faq-answer">
+                <p>{{ a }}</p>
+            </div>
+        </details>
+    </div>
+    {% endfor %}
+</section>
+
+
+
+
+
+
+<!-- Inline JS to manage modal & success popup -->
+<script>
+  // --- LOCAL IMAGE PATHS (from developer upload) ---
+  // The developer-provided images (absolute paths):
+  const SUCCESS_BG = "/mnt/data/Screenshot_2025-11-24-12-54-30-17_40deb401b9ffe8e1df2f1cc5ba480b12.jpg";
+  const CUSTOM_MODAL_BG = "/mnt/data/Screenshot_2025-11-24-12-54-25-23_40deb401b9ffe8e1df2f1cc5ba480b12.jpg";
+  const HERO_IMAGE = "/mnt/data/Screenshot_2025-11-24-12-47-36-33_40deb401b9ffe8e1df2f1cc5ba480b12.jpg";
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const customizeBtns = document.querySelectorAll('.customize-btn');
+    const modal = document.getElementById('customizeModal');
+    const modalClose = document.getElementById('modalCloseBtn');
+    const previewImage = document.getElementById('previewImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const customizeForm = document.getElementById('customizeForm');
+
+    const successOverlay = document.getElementById('successOverlay');
+    const successCard = document.getElementById('successCard');
+    const successClose = document.getElementById('successClose');
+
+    // Open modal when any customize button clicked
+    customizeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const collectionName = btn.dataset.collection || 'Customize';
+        const image = btn.dataset.image || '';
+        modalTitle.textContent = "Gift Customization Details Form — " + collectionName;
+
+        // set preview image
+        previewImage.src = image || "{% static 'shop\images\pinkgift.png' %}";
+
+        // optionally set the background of modal-panel to the uploaded image for richness
+        document.querySelector('.modal-panel').style.backgroundImage = `url('${CUSTOM_MODAL_BG}')`;
+
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Submit form: show success overlay with background
+    customizeForm.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+
+      // hide customize modal
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+
+      // set success overlay background
+      successOverlay.style.backgroundImage = `url('${SUCCESS_BG}')`;
+      successOverlay.style.display = 'flex';
+      successOverlay.setAttribute('aria-hidden', 'false');
+
+      // center text may be done via CSS for successCard
+    });
+
+    // close success overlay
+    successClose.addEventListener('click', function () {
+      successOverlay.style.display = 'none';
+      successOverlay.setAttribute('aria-hidden', 'true');
+    });
+
+    // also close overlay when clicking outside the success card
+    successOverlay.addEventListener('click', function (e) {
+      if (e.target === successOverlay) {
+        successOverlay.style.display = 'none';
+        successOverlay.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // close modal when clicking outside the panel
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+  });
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,156 @@
+/* order_track.css - styles for Track Your Order page */
+:root{
+  --container-width:1100px;
+  --yellow:#f4c20a;
+  --dark:#111;
+  --muted:#666;
+  --green:#1a9a3a;
+}
+
+* { box-sizing: border-box; }
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 36px 20px 80px;
+  background: #fff;
+}
+
+/* Title */
+.page-title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+/* Order id row */
+.order-id-row {
+  max-width: 900px;
+  margin: 8px auto 20px;
+}
+.order-id-row .label {
+  color: var(--muted);
+  text-transform: lowercase;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 6px;
+}
+.order-id { font-size: 15px; color: #222; margin-top: 8px; }
+
+/* Progress bar wrapper */
+.progress-wrap {
+  background: transparent;
+  margin: 8px auto 26px;
+  max-width: 980px;
+}
+
+/* Inner yellow rounded bar */
+.progress-inner {
+  background: var(--yellow);
+  border-radius: 12px;
+  padding: 18px 18px;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+
+/* Steps layout: 5 columns */
+.progress-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+/* Each step */
+.step {
+  padding: 6px 8px;
+  text-align: center;
+  color: rgba(0,0,0,0.6);
+  position: relative;
+}
+
+/* Title above the small line */
+.step .step-title {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+/* time block under small indicator */
+.step .step-time { font-size: 12px; color: rgba(0,0,0,0.7); line-height:1.1; }
+.step .time { font-weight:600; }
+.step .time-sub { font-size: 11px; color: rgba(0,0,0,0.65); }
+
+/* small baseline and circle indicator */
+.step:before {
+  content: "";
+  height: 4px;
+  width: 70%;
+  background: rgba(0,0,0,0.08);
+  display:block;
+  margin: 8px auto 6px;
+  border-radius: 4px;
+}
+
+/* circle marker at top of baseline */
+.step:after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.08);
+  display:block;
+  margin: -28px auto 12px;
+  position: relative;
+}
+
+/* completed state */
+.step.done .step-title,
+.step.done .step-time { color: var(--dark); font-weight:700; }
+.step.done:before { background: rgba(0,0,0,0.15); }
+.step.done:after {
+  background: var(--green);
+  border-color: rgba(0,0,0,0.06);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.12);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M20 6L9 17l-5-5' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+}
+
+/* Product row (card) */
+.product-list { max-width: 980px; margin: 26px auto 0; }
+.product-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 110px;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+  padding: 12px;
+  border-radius: 3px;
+  background: #fff;
+}
+.product-row .thumb img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.prod-info .prod-title {
+  font-size: 16px; color: #222; font-weight:600; margin-bottom:8px;
+}
+.prod-info .prod-meta { color: var(--muted); font-size: 13px; }
+.prod-price { justify-self: end; font-weight:700; color: var(--green); }
+
+/* Responsive */
+@media (max-width: 920px) {
+  .container { padding: 26px 14px 60px; }
+  .progress-steps { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-row { grid-template-columns: 80px 1fr; grid-template-rows: auto auto; }
+  .prod-price { grid-column: 2 / 3; justify-self: start; margin-top: 8px; }
+}
+
+/* small tweaks to match screenshot spacing */
+.page-title { margin-top: 6px; margin-bottom: 6px; }

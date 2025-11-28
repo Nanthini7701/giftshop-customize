@@ -1,0 +1,59 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="gift-section">
+
+    <!-- Heading -->
+    <div class="gift-heading">
+        <h2>Gift Gallery</h2>
+        <p>Browse our curated collection of beautiful gifts and get inspired for your next special occasion</p>
+    </div>
+
+    <!-- 1st Row -->
+    <div class="grid-2">
+        <div class="center-item">
+            <img src="{% static 'shop/images/watch.png' %}" class="img-round">
+        </div>
+
+        <div class="center-item">
+            <img src="{% static 'shop/images/earring.png' %}" class="img-normal">
+        </div>
+    </div>
+
+    <!-- 2nd Row -->
+    <div class="grid-3">
+
+        <div class="text-block">
+            <h3>Tech Essentials</h3>
+            <p>Latest gadgets and accessories</p>
+            <p class="price">From $45</p>
+        </div>
+
+        <div class="center-item">
+            <img src="{% static 'shop/images/speaker.png' %}" class="img-speaker">
+        </div>
+
+        <div class="text-block">
+            <h3>Custom Frames</h3>
+            <p>Personalized memory keepers</p>
+            <p class="price">From $25</p>
+        </div>
+
+    </div>
+
+    <!-- 3rd Row -->
+    <div class="grid-2">
+
+        <div class="center-item">
+            <img src="{% static 'shop/images/coffetime.png' %}" class="img-round">
+        </div>
+
+        <div class="center-item">
+            <img src="{% static 'shop/images/bottle.png' %}" class="img-normal">
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

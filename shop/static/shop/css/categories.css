@@ -1,0 +1,191 @@
+.icon-btn {
+    position: relative;
+    font-size: 22px;
+}
+
+.count {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background: #E9C100;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+.banner{
+    display: flex;
+    width: 100%%;
+    height: 250px;
+}
+.banner img {
+    width: 100%;
+    height: 100%;
+}
+.page-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.filter-wrapper {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 30px;
+    align-items: center;
+    text-align: center;
+}
+
+.filter-heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.filter-row {
+    display: flex;
+    
+    align-items: center;
+    margin-left: 20%;
+    flex-wrap: wrap;
+}
+
+.filter-box {
+    background: #FFD500;
+    border-left: 1px dashed black;
+    padding: 10px;
+    width: 170px;
+    align-items: center;
+}
+
+.drop-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.drop-btn:after {
+    content: "▾";
+    float: right;
+    transition: 0.3s;
+}
+
+.drop-btn[aria-expanded="true"]:after {
+    transform: rotate(180deg);
+}
+
+.drop-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease;
+    padding-left: 5px;
+    background-color: white;
+}
+
+.drop-content.open {
+    padding-top: 10px;
+    max-height: 400px;
+}
+
+.drop-content label {
+    display: block;
+    padding: 6px 0;
+}
+
+.explore-btn {
+    height: 45px;
+    background: #FFD500;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    width: 280px;
+    padding: 15px;
+    border: 2px solid #dcdcdc;
+    border-radius: 15px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+.product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ❤️ WISHLIST BUTTON */
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #b0b0b0;
+    padding: 5px;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+/* When active -> Yellow Heart */
+.wishlist-btn.active {
+    color: #ffcc00;
+}
+
+/* Blink animation */
+@keyframes blinkHeart {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.wishlist-btn.blink {
+    animation: blinkHeart 0.4s ease;
+}
+
+.price {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.btn-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.shop-now {
+    background: #ffcc00;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.customize-btn {
+    background: #e6e6e6;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}

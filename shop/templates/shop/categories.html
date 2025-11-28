@@ -1,0 +1,311 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- BANNER SECTION -->
+<div class="banner">
+    <img src="{% static 'shop/images/redlabel.png' %}">
+    <img src="{% static 'shop/images/whiteteddycup.png' %}">
+    <img src="{% static 'shop/images/image 50.png' %}">
+</div>
+
+<h2 class="page-title">Categories</h2>
+
+<!-- FILTER SECTION -->
+<div class="filter-wrapper">
+
+<h3 class="filter-heading">Filter section</h3>
+
+<form method="get">
+<div class="filter-row">
+
+    <!-- OCCASION -->
+    <div class="filter-box">
+        <button type="button" class="drop-btn" aria-expanded="false">
+            Occasion
+        </button>
+        <div class="drop-content">
+            <label><input type="radio" name="occasion" value="Birthday"> Birthday</label>
+            <label><input type="radio" name="occasion" value="Anniversary"> Anniversary</label>
+            <label><input type="radio" name="occasion" value="Wedding"> Wedding</label>
+            <label><input type="radio" name="occasion" value="Engagement"> Engagement</label>
+        </div>
+    </div>
+
+    <!-- GIFT TYPE -->
+    <div class="filter-box">
+        <button type="button" class="drop-btn" aria-expanded="false">
+            Gift type
+        </button>
+        <div class="drop-content">
+            <label><input type="radio" name="gift_type" value="Personalized"> Personalized</label>
+            <label><input type="radio" name="gift_type" value="Home Decor"> Home Decor</label>
+            <label><input type="radio" name="gift_type" value="Tech Gadgets"> Tech Gadgets</label>
+            <label><input type="radio" name="gift_type" value="Toys"> Toys & Games</label>
+        </div>
+    </div>
+
+    <!-- PRICE TYPE -->
+    <div class="filter-box">
+        <button type="button" class="drop-btn" aria-expanded="false">
+            Price type
+        </button>
+        <div class="drop-content">
+            <label><input type="radio" name="price_type" value="Under10"> Under $10</label>
+            <label><input type="radio" name="price_type" value="10-25"> $10 – $25</label>
+            <label><input type="radio" name="price_type" value="25-50"> $25 – $50</label>
+            <label><input type="radio" name="price_type" value="200+"> Over $200</label>
+        </div>
+    </div>
+
+    <!-- DELIVERY -->
+    <div class="filter-box">
+        <button type="button" class="drop-btn" aria-expanded="false">
+            Delivery
+        </button>
+        <div class="drop-content">
+            <label><input type="radio" name="delivery" value="Same-Day"> Same-Day</label>
+            <label><input type="radio" name="delivery" value="Next-Day"> Next-Day</label>
+            <label><input type="radio" name="delivery" value="Scheduled"> Scheduled</label>
+            <label><input type="radio" name="delivery" value="Express"> Express</label>
+        </div>
+    </div>
+
+    <button class="explore-btn" type="submit">Explore now</button>
+
+</div>
+</form>
+</div>
+
+<!-- PRODUCTS GRID SECTION -->
+<div class="product-grid">
+    {% for product in products %}
+    <div class="card">
+
+        <!-- ❤️ HEART BUTTON -->
+        <button 
+            class="wishlist-btn {% if product.id in wishlist_ids %}active{% endif %}"
+            onclick="toggleWishlist(this)">
+            <i class="fa-solid fa-heart"></i>
+        </button>
+
+        <!-- PRODUCT IMAGE -->
+        <img src="{{ product.image.url }}" class="product-img">
+
+        <!-- TITLE -->
+        <h3 class="product-title">{{ product.title }}</h3>
+
+        <!-- PRICE -->
+        <p class="price">Rs: {{ product.price }} Per Package</p>
+
+        <!-- BUTTONS -->
+        <div class="btn-area">
+            <a href="{% url 'shop:order' %}"><button class="shop-now" >Shop now</button></a>
+             <button class="btn btn-outline customize-btn" data-collection="The Picture Frame set" data-image="{% static 'shop/images/sample-collection-1.jpg' %}">Customize</button>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+<!-- CUSTOMIZE MODAL (hidden by default) -->
+<div id="customizeModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-panel">
+    <button class="modal-close" id="modalCloseBtn" title="Close">&times;</button>
+
+    <div class="modal-grid">
+      <div class="modal-form-col">
+        <h3 id="modalTitle">Gift Customization Details Form</h3>
+        <form id="customizeForm">
+          <div class="form-row">
+            <label>Recipient's Name</label>
+            <input type="text" name="recipient" placeholder="Recipient's name" required/>
+          </div>
+
+          <div class="form-row">
+            <label>Color choice</label>
+            <select name="color">
+              <option>Golden Theme</option>
+              <option>Red Theme</option>
+              <option>Blue Theme</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Date</label>
+            <input type="date" name="date" />
+          </div>
+
+          <div class="form-row">
+            <label>Font style</label>
+            <input type="text" name="font" placeholder="Font style (e.g. Italic)" />
+          </div>
+
+          <div class="form-row">
+            <label>Custom Message</label>
+            <textarea name="message" rows="3" placeholder="Enter custom message..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <label>Include gift wrap?</label>
+            <label><input type="radio" name="wrap" value="yes" checked/> Yes</label>
+            <label><input type="radio" name="wrap" value="no" /> No</label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-preview-col">
+        <div class="preview-box">
+          <div class="preview-image-wrap">
+            <!-- preview image will be filled by JS from button data-image -->
+            <img id="previewImage" src="" alt="Preview" />
+          </div>
+          <div class="preview-caption" id="previewCaption">Preview</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY (full-screen) -->
+<div id="successOverlay" class="success-overlay" aria-hidden="true">
+  <div class="success-card" id="successCard">
+    <h2>Customization details updated Success</h2>
+    <p>Check your Dashboard</p>
+    <button id="successClose" class="btn btn-outline">Close</button>
+  </div>
+</div>
+
+
+<!-- JS FILE -->
+<script src="{% static 'js/dropdown.js' %}"></script>
+<script>
+function toggleWishlist(btn) {
+    btn.classList.toggle("active");   // turn yellow
+    btn.classList.add("blink");       // blink once
+
+    setTimeout(() => {
+        btn.classList.remove("blink");
+    }, 400);
+}
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const buttons = document.querySelectorAll(".drop-btn");
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            const content = this.nextElementSibling;
+            const isOpen = content.classList.contains("open");
+
+            if (isOpen) {
+                content.style.maxHeight = null;
+                content.classList.remove("open");
+                btn.setAttribute("aria-expanded", "false");
+            } else {
+                content.classList.add("open");
+                content.style.maxHeight = content.scrollHeight + "px";
+                btn.setAttribute("aria-expanded", "true");
+            }
+        });
+    });
+
+});
+
+</script>
+
+<!-- Inline JS to manage modal & success popup -->
+<script>
+  // --- LOCAL IMAGE PATHS (from developer upload) ---
+  // The developer-provided images (absolute paths):
+  const SUCCESS_BG = "/mnt/data/Screenshot_2025-11-24-12-54-30-17_40deb401b9ffe8e1df2f1cc5ba480b12.jpg";
+  const CUSTOM_MODAL_BG = "/mnt/data/Screenshot_2025-11-24-12-54-25-23_40deb401b9ffe8e1df2f1cc5ba480b12.jpg";
+  const HERO_IMAGE = "/mnt/data/Screenshot_2025-11-24-12-47-36-33_40deb401b9ffe8e1df2f1cc5ba480b12.jpg";
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const customizeBtns = document.querySelectorAll('.customize-btn');
+    const modal = document.getElementById('customizeModal');
+    const modalClose = document.getElementById('modalCloseBtn');
+    const previewImage = document.getElementById('previewImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const customizeForm = document.getElementById('customizeForm');
+
+    const successOverlay = document.getElementById('successOverlay');
+    const successCard = document.getElementById('successCard');
+    const successClose = document.getElementById('successClose');
+
+    // Open modal when any customize button clicked
+    customizeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const collectionName = btn.dataset.collection || 'Customize';
+        const image = btn.dataset.image || '';
+        modalTitle.textContent = "Gift Customization Details Form — " + collectionName;
+
+        // set preview image
+        previewImage.src = image || "{% static 'shop\images\pinkgift.png' %}";
+
+        // optionally set the background of modal-panel to the uploaded image for richness
+        document.querySelector('.modal-panel').style.backgroundImage = `url('${CUSTOM_MODAL_BG}')`;
+
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Submit form: show success overlay with background
+    customizeForm.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+
+      // hide customize modal
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+
+      // set success overlay background
+      successOverlay.style.backgroundImage = `url('${SUCCESS_BG}')`;
+      successOverlay.style.display = 'flex';
+      successOverlay.setAttribute('aria-hidden', 'false');
+
+      // center text may be done via CSS for successCard
+    });
+
+    // close success overlay
+    successClose.addEventListener('click', function () {
+      successOverlay.style.display = 'none';
+      successOverlay.setAttribute('aria-hidden', 'true');
+    });
+
+    // also close overlay when clicking outside the success card
+    successOverlay.addEventListener('click', function (e) {
+      if (e.target === successOverlay) {
+        successOverlay.style.display = 'none';
+        successOverlay.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // close modal when clicking outside the panel
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+  });
+</script>
+
+
+{% endblock %}

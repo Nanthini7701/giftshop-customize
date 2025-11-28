@@ -1,0 +1,131 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="billing-wrapper">
+
+    <div class="billing-content">
+
+        <!-- LEFT SIDE – BILLING FORM -->
+        <div class="billing-box">
+
+            <h2 class="billing-title">Billing Details</h2>
+
+            <form>
+
+                <div class="two-col">
+                    <div class="field">
+                        <label>First Name*</label>
+                        <input type="text" placeholder="Ex.John">
+                    </div>
+
+                    <div class="field">
+                        <label>Last Name*</label>
+                        <input type="text" placeholder="Ex.Doe">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Country*</label>
+                    <input type="text" placeholder="Select Country">
+                </div>
+
+                <div class="field">
+                    <label>Street Address*</label>
+                    <input type="text" placeholder="Enter Street Address">
+                </div>
+
+                <div class="field">
+                    <label>City*</label>
+                    <input type="text" placeholder="Select City">
+                </div>
+
+                <div class="field">
+                    <label>State*</label>
+                    <input type="text" placeholder="Select State">
+                </div>
+
+                <div class="field">
+                    <label>Zip Code*</label>
+                    <input type="text" placeholder="Select Zipcode">
+                </div>
+
+                <div class="field">
+                    <label>Phone*</label>
+                    <input type="text" placeholder="Enter Phone number">
+                </div>
+
+                <div class="field">
+                    <label>E-Mail*</label>
+                    <input type="email" placeholder="Enter E-mail Id">
+                </div>
+
+                <!-- Delivery Address -->
+                <h3 class="delivery-title">Delivery Address</h3>
+
+                <div class="delivery-options">
+                    <label class="radio-option">
+                        <input type="radio" name="address_option">
+                        <span>Use a different billing address</span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="address_option">
+                        <span>Same as shipping address</span>
+                    </label>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT SIDE — ORDER SUMMARY -->
+        <div class="summary-box">
+
+            <h3>Order Summary</h3>
+
+            <div class="summary-row">
+                <span>Items</span>
+                <span>1</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>₹1200</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>₹0.0</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Taxes</span>
+                <span>₹0.0</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Coupon Discount</span>
+                <span>₹200</span>
+            </div>
+
+            <hr>
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>₹1000</span>
+            </div>
+             <a href="{% url 'shop:payment' %}">
+                <button class="pay-btn">Proceed to Pay</button>
+            </a>
+            <!-- PRODUCT IMAGE BELOW SUMMARY -->
+            <img src="{% static 'shop/images/pinkgirlframe.png' %}" class="billing-product-img" alt="product">
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
