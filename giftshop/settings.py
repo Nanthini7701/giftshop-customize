@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-^ixh$t-#8m##q1+to4xd9-^56a_*!-m%_=9*t==pvfsos052vb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['giftshop-customize.onrender.com',
+    'localhost',
+    '127.0.0.1']
 
 
 # Application definition
